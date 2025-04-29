@@ -1,0 +1,22 @@
+:root {
+  --font-mono: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 24px;
+
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+p {
+  margin: 5px 0;
+}
