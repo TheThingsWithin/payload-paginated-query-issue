@@ -7,7 +7,9 @@ import './styles.css'
 export default async function HomePage() {
   const payload = await getPayload({ config: config });
 
-  const LIMIT = 20;
+  const LIMIT = 10;
+
+  const someDate = new Date();
 
   const articlesFirstPage = await payload.find({
     collection: "articles",
@@ -16,7 +18,7 @@ export default async function HomePage() {
         equals: "option1"
       },
       "someList.someDate": {
-        less_than_equal: new Date().toISOString()
+        less_than_equal: someDate.toISOString()
       }
     },
     limit: LIMIT,
@@ -31,7 +33,7 @@ export default async function HomePage() {
         equals: "option1"
       },
       "someList.someDate": {
-        less_than_equal: new Date().toISOString()
+        less_than_equal: someDate.toISOString()
       }
     },
     limit: LIMIT,
@@ -46,7 +48,7 @@ export default async function HomePage() {
         equals: "option1"
       },
       "someList.someDate": {
-        less_than_equal: new Date().toISOString()
+        less_than_equal: someDate.toISOString()
       }
     },
     pagination: false,
