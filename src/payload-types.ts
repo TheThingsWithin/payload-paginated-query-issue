@@ -128,6 +128,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -141,6 +148,7 @@ export interface Article {
     | {
         someSelect: 'option1' | 'option2' | 'option3';
         someDate: string;
+        someNumber: number;
         id?: string | null;
       }[]
     | null;
@@ -219,6 +227,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -231,6 +246,7 @@ export interface ArticlesSelect<T extends boolean = true> {
     | {
         someSelect?: T;
         someDate?: T;
+        someNumber?: T;
         id?: T;
       };
   someOtherDate?: T;

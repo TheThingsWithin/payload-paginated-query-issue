@@ -25,6 +25,11 @@ export const Articles: CollectionConfig = {
                     name: "someDate",
                     required: true,
                 },
+                {
+                    type: "number",
+                    name: "someNumber",
+                    required: true,
+                },
             ]
         },
         {

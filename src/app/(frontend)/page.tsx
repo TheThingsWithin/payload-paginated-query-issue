@@ -7,51 +7,45 @@ import './styles.css'
 export default async function HomePage() {
   const payload = await getPayload({ config: config });
 
-  const LIMIT = 10;
+  const LIMIT = 100;
 
   const someDate = new Date();
 
+  const where = {};
+  // const where = {
+  //   "someList.someSelect": {
+  //     equals: "option1"
+  //   },
+  //   "someList.someDate": {
+  //     less_than_equal: someDate.toISOString()
+  //   }
+  // };
+
+  const sort = "someList.someNumber"
+
   const articlesFirstPage = await payload.find({
     collection: "articles",
-    where: {
-      "someList.someSelect": {
-        equals: "option1"
-      },
-      "someList.someDate": {
-        less_than_equal: someDate.toISOString()
-      }
-    },
+    where,
     limit: LIMIT,
     pagination: true,
     page: 1,
+    sort,
   });
 
   const articlesSecondPage = await payload.find({
     collection: "articles",
-    where: {
-      "someList.someSelect": {
-        equals: "option1"
-      },
-      "someList.someDate": {
-        less_than_equal: someDate.toISOString()
-      }
-    },
+    where,
     limit: LIMIT,
     pagination: true,
     page: 2,
+    sort,
   });
   
   const articlesWihtoutPagination = await payload.find({
     collection: "articles",
-    where: {
-      "someList.someSelect": {
-        equals: "option1"
-      },
-      "someList.someDate": {
-        less_than_equal: someDate.toISOString()
-      }
-    },
+    where,
     pagination: false,
+    sort,
   });
 
 
@@ -59,7 +53,9 @@ export default async function HomePage() {
     <section style={{ paddingInline: "50px", paddingBlock: "20px" }}>
       <h1>Articles</h1>
       <p>Limit: {LIMIT}</p>
+
       <hr />
+
       <article>
         <h2>First Page</h2>
         <p>Total Docs: {articlesFirstPage.totalDocs}</p>
@@ -70,7 +66,9 @@ export default async function HomePage() {
           IDs: {JSON.stringify(articlesFirstPage.docs.map(doc => doc.id))}
         </p>
       </article>
+
       <hr />
+
       <article>
         <h2>Second Page</h2>
         <p>Total Docs: {articlesSecondPage.totalDocs}</p>
@@ -81,14 +79,20 @@ export default async function HomePage() {
           IDs: {JSON.stringify(articlesSecondPage.docs.map(doc => doc.id))}
         </p>
       </article>
+
       <hr />
+
+      <article>
+        <h2>IDs in common between page 1 and page 2</h2>
+        <p>{JSON.stringify(articlesFirstPage.docs.filter(doc => articlesSecondPage.docs.some(doc2 => doc2.id === doc.id)).map(doc => doc.id))}</p>
+      </article>
+
+      <hr />
+
       <article>
         <h2>Without Pagination</h2>
         <p>Total Docs: {articlesWihtoutPagination.totalDocs}</p>
         <p>docs.length: {articlesWihtoutPagination.docs.length}</p>
-        {/* <p>
-          IDs: {JSON.stringify(articlesWihtoutPagination.docs.map(doc => doc.id))}
-        </p> */}
       </article>
     </section>
   )
