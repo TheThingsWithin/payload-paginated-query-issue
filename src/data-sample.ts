@@ -19,6 +19,12 @@ export const dataSample = Array.from({ length: 200 }, (_, index) => {
                 someNumber: Math.floor(Math.random() * 1000),
             };
         }),
+        otherList: Array.from({ length: 10 }, (_, listIndex) => {
+            return {
+                someText: Math.random().toString(36).substring(2, 10),
+                someCheckbox: Math.random() >= 0.5,
+            };
+        }),
         someOtherDate: getRandomDate(startDate, endDate),
     };
 });

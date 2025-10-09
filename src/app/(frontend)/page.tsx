@@ -21,7 +21,9 @@ export default async function HomePage() {
   //   }
   // };
 
-  const sort = "someList.someNumber"
+  const sort = "someList.someNumber";
+  // const sort = "otherList.someText";
+  // const sort = ["someList.someNumber", "otherList.someText"];
 
   const articlesFirstPage = await payload.find({
     collection: "articles",

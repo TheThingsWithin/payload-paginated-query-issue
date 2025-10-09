@@ -33,6 +33,22 @@ export const Articles: CollectionConfig = {
             ]
         },
         {
+            type: "array",
+            name: "otherList",
+            fields: [
+                {
+                    type: "text",
+                    name: "someText",
+                    required: true,
+                },
+                {
+                    type: "checkbox",
+                    name: "someCheckbox",
+                    required: true,
+                },
+            ]
+        },
+        {
             type: "date",
             name: "someOtherDate",
             required: true,

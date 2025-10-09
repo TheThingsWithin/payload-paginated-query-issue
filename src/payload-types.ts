@@ -152,6 +152,13 @@ export interface Article {
         id?: string | null;
       }[]
     | null;
+  otherList?:
+    | {
+        someText: string;
+        someCheckbox: boolean;
+        id?: string | null;
+      }[]
+    | null;
   someOtherDate: string;
   updatedAt: string;
   createdAt: string;
@@ -247,6 +254,13 @@ export interface ArticlesSelect<T extends boolean = true> {
         someSelect?: T;
         someDate?: T;
         someNumber?: T;
+        id?: T;
+      };
+  otherList?:
+    | T
+    | {
+        someText?: T;
+        someCheckbox?: T;
         id?: T;
       };
   someOtherDate?: T;
